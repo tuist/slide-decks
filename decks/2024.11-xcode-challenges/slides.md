@@ -20,25 +20,24 @@ layout: cover
 
 <br/>
 
-- Pedro Piñera
+- Marek Fořt
 - Berlin-based
-- Open Source and developer tooling passionate
-- Creator of Tuist and co-founder and CEO of Tuist GmbH
+- Passion for open source, developer tooling
+- Long-time maintainer and co-founder of Tuist
 
 ---
 ---
 <div class="w-full h-full">
   <img src="/logo.png" class="w-50"/>
   <h1>Tuist</h1>
-  <h2>Xcode project management</h2>
-  <h3>(We fight Xcode intricacies, so that you don't have to)</h3>
-  <h4>For my parents: we help developers stay productive</h4>
+  <h2>Swift toolchain extending Xcode</h2>
+  <h3>(We give Xcode superpowers, so you can stay productive)</h3>
 </div>
 
 ---
 ---
 
-# Development stack
+# Apple development stack
 
 ## 1. Concepts
 Provide a **common language** across the platforms
@@ -57,7 +56,7 @@ Provide a tool to **interact** with the project
 
 # Targets 📦
 
-Unit of encapsulation of various source files with a well-defined public interface
+Unit of encapsulation of various source files
 
 <div class="grid grid-cols-2">
   <div>
@@ -88,7 +87,7 @@ Unit of encapsulation of various source files with a well-defined public interfa
 
 # Targets 📦
 
-Unit of encapsulation of various source files with a well-defined public interface
+Unit of encapsulation of various source files
 
 <div class="grid grid-cols-2">
   <div>
@@ -113,20 +112,20 @@ Unit of encapsulation of various source files with a well-defined public interfa
 
 # Concepts, Xcode projects and workspaces, build system, and editor need to evolve too...
 
-## And they had to make great decisions quicky
+## And they had to make great decisions quickly
 
 ---
 ---
 
 # Convenience vs. scalability
 
-- **Convenience:**
-  - Sensible defaults
-  - Build-time resolution of implicitness
+Convenience:
+- Sensible defaults
+- Build-time resolution of implicitness
 
-- **Scalability:**
-  - Explicitness
-  - Predictability
+Scalability:
+- Explicitness
+- Predictability
 
 ---
 ---
@@ -140,18 +139,19 @@ Unit of encapsulation of various source files with a well-defined public interfa
 5. Non-optimizable workflows
 6. Slow Swift Package Manager integration
 7. Mergable mess
+8. Insights
 
 ---
 ---
 
 # 1. Unmaintainable dependency graphs
 
-- New targets in the graph might have upstream effects (e.g. embedding into products)
+- New targets in the graph might have downstream effects (e.g. embedding into products)
 - The graph is not visible in the UI
 - The graph is implicitly codified into the project files
 
 ## What can I do about it 🧐
-- Make it explicit through tools like [Tuist](https://tuist.io), SPM, or Bazel
+- Make it explicit through tools like [Tuist](https://tuist.dev), SPM, or Bazel
 - Keep graphs simple and shallow
 
 ---
@@ -160,14 +160,12 @@ Unit of encapsulation of various source files with a well-defined public interfa
 # 2. Implicit dependencies
 
 - Two types:
-  1. Opted-in through the "Find implicit dependencies" scheme option
+  1. Opted-in using the "Find implicit dependencies" scheme option
   2. Accidental due to shared built products directory
-- Non-declared dependencies can resolve implicitly (fine at small scale)
-- But can lead to build issues and headaches at scale
 
 ## What can I do about it 🧐
 - Disable "Find implicit dependencies from schemes"
-- Use [Tuist](https://tuist.io) and enable "force explicit dependencies".
+- Use [Tuist](https://tuist.dev)'s `inspect implicit-imports` command
 
 ---
 ---
@@ -204,22 +202,20 @@ Unit of encapsulation of various source files with a well-defined public interfa
 # 5. Non-optimizable workflows
 
 - Xcode's editor and build system are strongly coupled
-- You can't optimize compilation steps
+- You can't optimize build and test times
 
 ## What can I do about it 🧐
 - Replace the build system with Bazel (costly)
-- Use [Tuist](https://tuist.io) and [Tuist Cloud](https://tuist.io/cloud)
+- Use [Tuist](https://tuist.dev)'s cache and selective testing features
 
 ---
 ---
 
 # 6. Slow Swift Package Manager integration
 
-- You have no control over when the SPM graph is resolved
-- The resolution might be slow and happen at any time (e.g. when adding a file)
-- SPM's design principles didn't account for project management usage
-  - And that's becoming apparent as companies use it for that.
-- The fact that you can use it for project management, doesn't mean it's designed for it.
+- No control over when the SPM graph is resolved
+- Slow, often random resolution
+- SPM's design principles not tailored for project management
 
 ---
 ---
@@ -233,16 +229,16 @@ Unit of encapsulation of various source files with a well-defined public interfa
 
 ## What can I do about it 🧐
 - Use it only for integrating external dependencies
-- Use [Tuist](https://tuist.io)'s XcodeProj-based integration.
+- Use [Tuist](https://tuist.dev)'s XcodeProj-based integration.
 
 ---
 ---
 
-# 7. Mergable mess
+# 7. Mergeable mess
 
 - Slow compilation or slow build time
-  - Dynamic frameworks are easier to integrate but impact build times negatively
-  - Static frameworks are harder to integrate but increase build times
+  - Dynamic frameworks vs. static frameworks
+  - Faster and more predictable builds vs. faster launch times
 - Apple's response
   - Some configuration-based build-time magic
   - But...
@@ -250,7 +246,20 @@ Unit of encapsulation of various source files with a well-defined public interfa
     - The graph is harder to reason about
 
 ## What can I do about it 🧐
-- Use [Tuist](https://tuist.io) to statically switch between static and dynamic
+- Use [Tuist](https://tuist.dev) to statically switch between static and dynamic
+
+---
+---
+
+# 8. Insights
+
+- To make informed decisions, teams need data
+
+## What can I do about it 🧐
+
+- [Tuist](https://tuist.dev) tracks your build and test times
+- Cache insights
+- More to come, stay tuned!
 
 ---
 ---
@@ -272,4 +281,4 @@ Unit of encapsulation of various source files with a well-defined public interfa
 ---
 ---
 
-# 고마워요 😀
+# Thanks for listening! 🙏
